@@ -4,15 +4,29 @@
         {
             "name": "default",
             "displayName": "DualSlide game",
+            "description": "Builds against the DualSlide release named in CMakeLists.txt, fetched from GitHub",
             "generator": "Ninja",
-            "binaryDir": "${sourceDir}/build",
-            "toolchainFile": "${sourceDir}/../DualSlide/software/sdk/cmake/toolchain.cmake"
+            "binaryDir": "${sourceDir}/build"
+        },
+        {
+            "name": "local",
+            "displayName": "DualSlide game (local DualSlide)",
+            "description": "Builds against the DualSlide checkout beside this repository",
+            "inherits": "default",
+            "binaryDir": "${sourceDir}/build-local",
+            "cacheVariables": {
+                "FETCHCONTENT_SOURCE_DIR_DUALSLIDE": "${sourceDir}/../DualSlide"
+            }
         }
     ],
     "buildPresets": [
         {
             "name": "default",
             "configurePreset": "default"
+        },
+        {
+            "name": "local",
+            "configurePreset": "local"
         }
     ]
 }
